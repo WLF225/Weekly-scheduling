@@ -1,4 +1,4 @@
-import { DAYS, formatHour, formatRange, blockPosition, mondayIndex } from './logic.js';
+import { DAYS, WEEK_ORDER, formatHour, formatRange, blockPosition, mondayIndex } from './logic.js';
 
 // Tiny element builder; text always via textContent.
 export function h(tag, attrs = {}, ...children) {
@@ -32,7 +32,8 @@ export function renderGrid({ schedule, tasks, use24, onTaskClick, now = new Date
         h('div', { class: 'hour', role: 'columnheader' }, formatHour(startHour + i, use24)))),
   );
 
-  const rows = DAYS.map((day, d) => {
+  const rows = WEEK_ORDER.map((d) => {
+    const day = DAYS[d];
     const dayTasks = tasks.filter((t) => t.day === d);
     const track = h('div', { class: 'day-track' },
       dayTasks.map((t) => {

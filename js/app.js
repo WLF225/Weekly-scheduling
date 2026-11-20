@@ -2,7 +2,7 @@ import { onUserChanged, signIn, signOut } from './auth.js';
 import { db, isConfigured, setErrorHandler } from './db.js';
 import { renderGrid, h } from './grid.js';
 import {
-  DAYS, TASK_COLORS, formatHour, formatTime, formatRange, timeSteps, validateScheduleFields,
+  DAYS, WEEK_ORDER, TASK_COLORS, formatHour, formatTime, formatRange, timeSteps, validateScheduleFields,
   validateTask, tasksOutsideHours, pickNextMain, resolveMain, mondayIndex,
 } from './logic.js';
 
@@ -340,11 +340,11 @@ function openScheduleDialog(existing = null) {
 // ---------- Task dialog ----------
 
 function buildTaskPickers() {
-  $('#day-picker').replaceChildren(...DAYS.map((d, i) =>
+  $('#day-picker').replaceChildren(...WEEK_ORDER.map((i) =>
     h('label', { class: 'day-chip' },
       h('input', { type: 'checkbox', name: 'day', value: String(i) }),
-      h('span', { 'aria-hidden': 'true' }, d.slice(0, 3)),
-      h('span', { class: 'sr-only' }, d))));
+      h('span', { 'aria-hidden': 'true' }, DAYS[i].slice(0, 3)),
+      h('span', { class: 'sr-only' }, DAYS[i]))));
   $('#color-picker').replaceChildren(...TASK_COLORS.map((c) =>
     h('label', { class: 'swatch', title: c.name },
       h('input', { type: 'radio', name: 'color', value: c.hex }),

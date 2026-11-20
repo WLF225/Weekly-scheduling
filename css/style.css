@@ -12,7 +12,6 @@
   --task-ink: #1F2A44;
   --danger: #B42318;
   --field-bg: #FFFFFF;
-  --stripe: 6px;
   --radius: 8px;
   --font-ui: 'Montserrat', system-ui, sans-serif;
   --font-day: 'Bebas Neue', 'Oswald', 'Arial Narrow', sans-serif;
@@ -44,18 +43,7 @@ body {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5;
-  padding-left: var(--stripe);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Coral stripe on the left edge */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--stripe);
-  background: var(--coral);
-  z-index: 100;
 }
 
 [hidden] { display: none !important; }
@@ -527,7 +515,6 @@ dialog::backdrop { background: rgba(14, 20, 36, .55); }
 /* ---------- Mobile ---------- */
 
 @media (max-width: 700px) {
-  :root { --stripe: 4px; }
   .grid { --day-w: 64px; --hour-w: 84px; }
   .day-rest { display: none; }
   .day-cell { padding: .5rem .4rem; }
@@ -543,7 +530,6 @@ dialog::backdrop { background: rgba(14, 20, 36, .55); }
 }
 
 @media print {
-  body { padding-left: 0; }
-  body::before, .topbar, .demo-banner, .board-actions, .toast { display: none; }
+  .topbar, .demo-banner, .board-actions, .toast { display: none; }
   .grid-scroll { overflow: visible; }
 }

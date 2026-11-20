@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  formatTime, formatHour, formatRange, timeSteps, validateScheduleFields,
+  DAYS, WEEK_ORDER, formatTime, formatHour, formatRange, timeSteps, validateScheduleFields,
   validateTask, tasksOutsideHours, pickNextMain, resolveMain, blockPosition, mondayIndex,
 } from '../js/logic.js';
 
@@ -108,4 +108,9 @@ test('blockPosition: 9:30–11:00 in an 8–18 schedule', () => {
 test('mondayIndex', () => {
   assert.equal(mondayIndex(new Date(2026, 10, 16)), 0);
   assert.equal(mondayIndex(new Date(2026, 10, 22)), 6);
+});
+
+test('WEEK_ORDER starts Saturday and covers every day once', () => {
+  assert.deepEqual(WEEK_ORDER.map((d) => DAYS[d]),
+    ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']);
 });

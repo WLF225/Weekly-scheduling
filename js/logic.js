@@ -2,6 +2,9 @@
 
 export const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+// Display order: week starts Saturday. Stored indexes unchanged.
+export const WEEK_ORDER = [5, 6, 0, 1, 2, 3, 4];
+
 export const TASK_COLORS = [
   { name: 'Sky blue', hex: '#A7C7E7' },
   { name: 'Sage green', hex: '#A8D5BA' },
