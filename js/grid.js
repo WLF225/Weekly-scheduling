@@ -28,8 +28,11 @@ export function renderGrid({ schedule, tasks, use24, onTaskClick, now = new Date
   const head = h('div', { class: 'grid-hours', role: 'row' },
     h('div', { class: 'grid-corner', role: 'columnheader' }, h('span', { class: 'sr-only' }, 'Day')),
     h('div', { class: 'hour-labels' },
-      Array.from({ length: hours }, (_, i) =>
-        h('div', { class: 'hour', role: 'columnheader' }, formatHour(startHour + i, use24)))),
+      Array.from({ length: hours }, (_, i) => {
+        const [, num, suffix] = formatHour(startHour + i, use24).match(/^(\d+)(.*)$/);
+        return h('div', { class: 'hour', role: 'columnheader' },
+          num, h('span', { class: 'hour-suffix' }, suffix));
+      })),
   );
 
   const rows = WEEK_ORDER.map((d) => {
